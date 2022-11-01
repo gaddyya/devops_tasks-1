@@ -17,15 +17,18 @@
   align-items: stretch;
   font-family: "Montserrat";
   font-weight: 200;
+  font-size: 0.8rem;
 }
 
 .box1,
 .box2,
 .box3,
-.box4 {
-  -ms-flex-preferred-size: 33.33%;
-  -webkit-flex-basis: 33.33%;
-  flex-basis: 33.33%;
+.box4,
+.box5,
+.box6 {
+  -ms-flex-preferred-size: 20%;
+  -webkit-flex-basis: 20%;
+  flex-basis: 20%;
   -webkit-transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
   -o-transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
   transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
@@ -50,16 +53,20 @@
 .box1:hover,
 .box2:hover,
 .box3:hover,
-.box4:hover {
-  -ms-flex-preferred-size: 50%;
-  -webkit-flex-basis: 50%;
-  flex-basis: 50%;
+.box4:hover,
+.box5:hover,
+.box6:hover {
+  -ms-flex-preferred-size: 25%;
+  -webkit-flex-basis: 25%;
+  flex-basis: 25%;
 }
 
 .box1:after,
 .box2:after,
 .box3:after,
-.box4:after {
+.box4:after,
+.box5:after,
+.box6:after {
   content: "";
   display: -webkit-box;
   display: -webkit-flex;
@@ -110,15 +117,30 @@
   content: "AWS";
 }
 
+.box5:after {
+  background-color: rgba(183, 79, 138, 0.67);
+  content: "RED BLUE";
+}
+
+.box6:after {
+  background-color: rgba(183, 178, 79, 0.67);
+  content: "IMAGE";
+}
+
 .box1:hover:after,
 .box2:hover:after,
-.box3:hover:after {
+.box3:hover:after,
+.box4:hover:after,
+.box5:hover:after,
+.box6:hover:after {
   opacity: 1;
 }
 
 .box1:hover:after,
 .box2:hover:after,
-.box3:hover:after {
+.box3:hover:after,
+.box4:hover:after,
+.box5:hover:after,
+.box6:hover:after {
   background: none;
 }
-
