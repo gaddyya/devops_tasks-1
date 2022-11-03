@@ -5,6 +5,10 @@ server {
 	location / {
 		try_files $uri $uri/ =404;
 	}
+  location ~* \.(jpg|jpeg)$ {
+                root /var/www/app.aleksandrovich.ml/;
+                image_filter rotate 180;
+  }
 
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/app.aleksandrovich.ml/fullchain.pem; # managed by Certbot

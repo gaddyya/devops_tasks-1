@@ -17,7 +17,7 @@
   align-items: stretch;
   font-family: "Montserrat";
   font-weight: 200;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
 .box1,
@@ -25,10 +25,11 @@
 .box3,
 .box4,
 .box5,
-.box6 {
-  -ms-flex-preferred-size: 20%;
-  -webkit-flex-basis: 20%;
-  flex-basis: 20%;
+.box6,
+.box7 {
+  -ms-flex-preferred-size: 16.6%;
+  -webkit-flex-basis: 16.6%;
+  flex-basis: 16.6%;
   -webkit-transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
   -o-transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
   transition: 0.5s flex-basis cubic-bezier(0.23, 1, 0.32, 1);
@@ -55,10 +56,11 @@
 .box3:hover,
 .box4:hover,
 .box5:hover,
-.box6:hover {
-  -ms-flex-preferred-size: 25%;
-  -webkit-flex-basis: 25%;
-  flex-basis: 25%;
+.box6:hover,
+.box7:hover {
+  -ms-flex-preferred-size: 20%;
+  -webkit-flex-basis: 20%;
+  flex-basis: 20%;
 }
 
 .box1:after,
@@ -66,7 +68,8 @@
 .box3:after,
 .box4:after,
 .box5:after,
-.box6:after {
+.box6:after,
+.box7:after {
   content: "";
   display: -webkit-box;
   display: -webkit-flex;
@@ -124,7 +127,12 @@
 
 .box6:after {
   background-color: rgba(183, 178, 79, 0.67);
-  content: "IMAGE";
+  content: "IMAGE-1";
+}
+
+.box7:after {
+  background-color: rgba(79, 183, 178, 0.67);
+  content: "IMAGE-2";
 }
 
 .box1:hover:after,
@@ -132,7 +140,8 @@
 .box3:hover:after,
 .box4:hover:after,
 .box5:hover:after,
-.box6:hover:after {
+.box6:hover:after,
+.box7:hover:after {
   opacity: 1;
 }
 
@@ -141,6 +150,7 @@
 .box3:hover:after,
 .box4:hover:after,
 .box5:hover:after,
-.box6:hover:after {
+.box6:hover:after,
+.box7:hover:after {
   background: none;
 }
