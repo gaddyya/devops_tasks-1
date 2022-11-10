@@ -1,0 +1,7 @@
+[Unit]
+Description=Script for parsing nginx logs and cleanup them
+
+[Service]
+ExecStart=/opt/log_parser.sh
+Restart=always
+RestartSec=3
