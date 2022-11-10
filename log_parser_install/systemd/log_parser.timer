@@ -1,9 +1,0 @@
-[Unit]
-Description=Timer for running log_parser every 5 second
-
-[Timer]
-OnBootSec=5sec
-OnUnitActiveSec=5sec
-
-[Install]
-WantedBy=timers.target
