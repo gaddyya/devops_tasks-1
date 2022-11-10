@@ -1,9 +1,0 @@
-server {
-	listen 2000;
-	server_name blue;
-	root /var/www/blue/;
-	index index.html index.htm index.nginx-debian.html;
-	location / {
-		try_files $uri $uri/ =404;
-	}
-}
