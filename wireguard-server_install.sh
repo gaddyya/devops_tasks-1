@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install -y wireguard
 wg genkey | tee /etc/wireguard/privatekey | wg pubkey | tee /etc/wireguard/publickey
 
 
