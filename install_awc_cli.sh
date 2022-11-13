@@ -20,11 +20,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "This is MacOS"
     curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
     sudo installer -pkg AWSCLIV2.pkg -target /
+    which aws
+    aws --version
 
     elif [[ "$OSTYPE" == "msys" ]]; then
-    echo "Its Windows"
-    msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+    echo "This is Windows"
+    msiexec.exe //i https://awscli.amazonaws.com/AWSCLIV2.msi
 
 else
-    echo "Sorry I dont know what to do"
+    echo "Sorry, I don't know what to do"
 fi
