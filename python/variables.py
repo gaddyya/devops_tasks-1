@@ -1,6 +1,7 @@
-instance_id = 'i-03b570a310b80e70b'
+instance_id = 'i-0de81ca3a2112b3f4'
 image_id = 'ami-070b208e993b59cea'
 instance_type = 't2.micro'
+instance_ip = '3.75.97.87'
 vpc_id = 'vpc-0c0bdf121bff5b5df'
 subnet_id = 'subnet-07d7c7c8de46a82a7'
 availability_zone = 'eu-central-1b'

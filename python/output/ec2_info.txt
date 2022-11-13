@@ -1,3 +1,3 @@
-Public ipv4: 3.70.251.99
+Public ipv4: 3.75.97.87
 Type: t2.micro
 OS: Linux/UNIX
