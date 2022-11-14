@@ -1,16 +1,31 @@
 variable "ec2_name" {
-  default = ""
+  default = "server"
 }
 
-variable "ami_owners" {
-  default = ["099720109477"]
+variable "ec2_ami" {
+  default = "ami-0f540e9f488cfa27d"
 }
 
-variable "ec2_vpc_sg_id" {
-  default = []
+variable "instance_type" {
+  default = "t2.micro"
 }
 
-variable "ec2_subnet_id" {
-  default = ""
+variable "key_name" {
+  default = "playsdev_london"
 }
 
+variable "vpc_sg_id" {
+
+}
+
+variable "subnet_id" {
+
+}
+
+variable "tag_name" {
+
+}
+
+variable "tag_env" {
+
+}

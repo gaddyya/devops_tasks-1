@@ -9,11 +9,11 @@ variable "sg_description" {
 }
 
 variable "vpc_id" {
-  default = ""
+
 }
 
 variable "vpc_cidr_secure" {
-  default = ""
+  
 }
 
 variable "allow_ports_public" {

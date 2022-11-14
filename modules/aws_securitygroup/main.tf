@@ -1,6 +1,7 @@
 resource "aws_security_group" "study" {
   name        = var.sg_name
   description = var.sg_description
+  vpc_id      = var.vpc_id
 
   dynamic "ingress" {
     for_each = var.allow_ports_public
