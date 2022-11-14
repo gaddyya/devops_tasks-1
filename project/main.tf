@@ -40,26 +40,23 @@ module "vpc-sg-db" {
   vpc_cidr_secure    = module.vpc-study.vpc_cidr
 }
 
-output "vpc_cidr_block_study" {
-  value = module.vpc-study.vpc_cidr
-}
-
-output "vpc-study_id" {
-  value = module.vpc-study.vpc_id
-}
-
-output "public_subnet_ids" {
-  value = module.vpc-study.public_subnets_ids
-}
-
 output "vpc-sg-public_id" {
-  value = module.vpc-sg-private.security_groups_ids
+  value = module.vpc-sg-public.security_groups_ids
 }
 
-output "vpc-sg-private_id" {
-  value = module.vpc-sg-private.security_groups_ids
+module "ec2_bastion" {
+  source    = "../modules/aws_ec2"
+  vpc_sg_id = module.vpc-sg-public.security_groups_ids
+  subnet_id = module.vpc-study.public_subnets_ids[0]
+  tag_env   = "Study"
+  tag_name  = "Bastion"
 }
 
-output "vpc-sg-db_id" {
-  value = module.vpc-sg-db.security_groups_ids
+module "ec2_private" {
+  source    = "../modules/aws_ec2"
+  vpc_sg_id = module.vpc-sg-private.security_groups_ids
+  subnet_id = module.vpc-study.private_subnets_ids[0]
+  tag_env   = "Study"
+  tag_name  = "Secure"
 }
+
