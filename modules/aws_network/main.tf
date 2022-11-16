@@ -101,3 +101,15 @@ resource "aws_route_table_association" "private_routes" {
 
 }
 
+# ---------------  DB Subnets   ---------------
+
+resource "aws_subnet" "private_db_subnets" {
+  count             = length(var.private_db_subnet_cidrs)
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = element(var.private_db_subnet_cidrs, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+  tags = {
+    Name = "${var.env}-private_db-${count.index + 1}"
+  }
+}
+

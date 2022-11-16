@@ -18,7 +18,14 @@ variable "public_subnet_cidrs" {
 
 variable "private_subnet_cidrs" {
   default = [
-   "10.0.11.0/24",
-   "10.0.22.0/24"
+    "10.0.11.0/24",
+    "10.0.22.0/24"
+  ]
+}
+
+variable "private_db_subnet_cidrs" {
+  default = [
+    "10.0.31.0/24",
+    "10.0.32.0/24"
   ]
 }

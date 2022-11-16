@@ -60,3 +60,9 @@ module "ec2_private" {
   tag_name  = "Secure"
 }
 
+module "rds_private" {
+  source     = "../modules/aws_rds"
+  vpc_sg_id  = module.vpc-sg-db.security_groups_ids
+  subnets_id = module.vpc-study.private_db_subnets_ids
+}
+
