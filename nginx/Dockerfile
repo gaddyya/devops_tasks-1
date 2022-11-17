@@ -8,7 +8,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY fullchain.pem /etc/letsencrypt/fullchain.pem
 COPY privkey.pem /etc/letsencrypt/privkey.pem
 COPY ssl-dhparams.pem etc/letsencrypt/ssl-dhparams.pem
-COPY options-ssl-nginx.conf etc/letsencrypt/option-ssl-nginx.conf
+COPY options-ssl-nginx.conf etc/letsencrypt/options-ssl-nginx.conf
 COPY aleksandrovich.conf /etc/nginx/conf.d/aleksandrovich.conf
 COPY index.html /usr/share/nginx/html/index.html
 COPY style.css /usr/share/nginx/html/style.css
