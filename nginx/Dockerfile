@@ -15,6 +15,8 @@ COPY song.mp3 /var/www/html/download/song.mp3
 
 COPY fullchain.pem /etc/letsencrypt/fullchain.pem
 COPY privkey.pem /etc/letsencrypt/privkey.pem
+COPY ssl-dhparams.pem etc/letsencrypt/ssl-dhparams.pem
+COPY option-ssl-nginx.conf etc/letsencrypt/option-ssl-nginx.conf
 
 EXPOSE 80 443 8080
 
