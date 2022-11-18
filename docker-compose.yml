@@ -1,0 +1,27 @@
+version: "3"
+services:
+  nginx:
+    image: vadimalexandrovich/task-14:nginx
+    networks:
+      app-net:
+        ipv4_address: 172.100.2.10
+    ports:
+      - 80:80
+      - 443:443
+
+  apache:
+    image: vadimalexandrovich/task-14:apache
+    tty: true
+    networks:
+      app-net:
+        ipv4_address: 172.100.2.20
+    ports:
+      - 8080:8080
+
+networks:
+  app-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.100.2.0/16
+          gateway: 172.100.2.1
