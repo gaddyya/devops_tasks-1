@@ -1,0 +1,7 @@
+---
+- name: Install Docker and run containers
+  hosts: all
+  become: true
+
+  roles:
+    - { role: deploy_docker_containers }

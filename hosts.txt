@@ -1,0 +1,5 @@
+[ubuntu_servers]
+ubuntu  ansible_host=35.159.24.152
+
+[amazon_servers]
+aws ansible_host=18.195.215.154
