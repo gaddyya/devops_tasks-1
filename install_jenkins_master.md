@@ -19,7 +19,7 @@
 > sudo apt-get install jenkins -y
 
 # Open in browser
-http://localhost:8080
+http://54.93.34.94:8080
 
 # Cat pasword and fill in in browser
 > cat /var/lib/jenkins/secrets/initialAdminPassword
