@@ -1,6 +1,6 @@
 [
   {
     "name": "nginx",
-    "iamgeUri": "429121993112.dkr.ecr.eu-central-1.amazonaws.com/task-21-nginx:latest"
+    "imageUri": "429121993112.dkr.ecr.eu-central-1.amazonaws.com/task-21-nginx:latest"
   }
 ]
