@@ -1,0 +1,22 @@
+groups:
+  - name: cpu_usage
+    rules:
+      - alert: HostHighCpuLoad
+        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle", job="nginx"}[2m])) * 100) > 1
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: Host high CPU load (instance {{ $labels.instance }})
+          description: "CPU load is > 1%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - name: ram_usage
+    rules:
+      - alert: HostOutOfMemory
+        expr: node_memory_MemAvailable_bytes{job="apache"} / node_memory_MemTotal_bytes{job="apache"} * 100 < 50
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: Host out of memory (instance {{ $labels.instance }})
+          description: "Node memory is filling up (< 50% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

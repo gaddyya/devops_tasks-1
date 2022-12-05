@@ -1,0 +1,119 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: vadimalexandrovich/nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+    logging:
+      driver: loki
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+        loki-external-labels: job=nginx
+
+  apache:
+    image: vadimalexandrovich/httpd:latest
+    container_name: apache
+    ports:
+      - 8080:8080
+    logging:
+      driver: loki
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+        loki-external-labels: job=apache
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus:/etc/prometheus/
+    container_name: prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    container_name: exporter
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points
+      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
+    ports:
+      - 9100:9100
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    container_name: grafana
+    restart: unless-stopped
+
+  alertmanager-bot:
+    command:
+      - --alertmanager.url=http://alertmanager:9093
+      - --log.level=info
+      - --store=bolt
+      - --bolt.path=/data/bot.db
+    user: root
+    ports:
+      - 8080:8080
+    container_name: alertmanager-bot
+    environment:
+      TELEGRAM_ADMIN: 514557607
+      TELEGRAM_TOKEN: 5614908692:AAHihwiqLRT_INtcvLK98tJH1T0aO2Y5IrY
+    image: metalmatze/alertmanager-bot:0.4.3
+    restart: always
+    volumes:
+      - ./data:/data
+
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    user: root
+    ports:
+      - 127.0.0.1:9093:9093
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    container_name: alertmanager
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+      - "--storage.path=/etc/alertmanager/data"
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    volumes:
+      - ./config/loki.yaml:/etc/config/loki.yaml
+    entrypoint:
+      - /usr/bin/loki
+      - -config.file=/etc/config/loki.yaml
+    ports:
+      - "3100:3100"
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    user: root
+    volumes:
+      - ./log:/var/log/nginx
+      - ./log:/var/log/httpd
+      - /var/log/system.log:/var/log/root/system.log
+      - ./config/config_promtail.yaml:/etc/config/config_promtail.yaml
+    entrypoint:
+      - /usr/bin/promtail
+      - -config.file=/etc/config/config_promtail.yaml
+    ports:
+      - "9080:9080"
