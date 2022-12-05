@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  web-server:
+    image: vadimalexandrovich/nginx
+    container_name: web-server
+    ports:
+      - 80:80
+      - 443:443
+      - 88:88
+    logging:
+      driver: loki
+      options:
+        loki-url: http://localhost:3100/loki/api/v1/push
+        loki-external-labels: job=nginx
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - ./config/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+    ports:
+      - "3000:3000"
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    volumes:
+      - ./config/loki.yaml:/etc/config/loki.yaml
+    entrypoint:
+      - /usr/bin/loki
+      - -config.file=/etc/config/loki.yaml
+    ports:
+      - "3100:3100"
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    user: root
+    volumes:
+      - ./log:/var/log/nginx
+      - /var/log/system.log:/var/log/root/system.log
+      - ./config/config_promtail.yaml:/etc/config/config_promtail.yaml
+    entrypoint:
+      - /usr/bin/promtail
+      - -config.file=/etc/config/config_promtail.yaml
+    ports:
+      - "9080:9080"
