@@ -61,37 +61,6 @@ services:
     container_name: grafana
     restart: unless-stopped
 
-  alertmanager-bot:
-    command:
-      - --alertmanager.url=http://alertmanager:9093
-      - --log.level=info
-      - --store=bolt
-      - --bolt.path=/data/bot.db
-    user: root
-    ports:
-      - 8080:8080
-    container_name: alertmanager-bot
-    environment:
-      TELEGRAM_ADMIN: 514557607
-      TELEGRAM_TOKEN: 5614908692:AAHihwiqLRT_INtcvLK98tJH1T0aO2Y5IrY
-    image: metalmatze/alertmanager-bot:0.4.3
-    restart: always
-    volumes:
-      - ./data:/data
-
-  alertmanager:
-    image: prom/alertmanager:v0.21.0
-    user: root
-    ports:
-      - 127.0.0.1:9093:9093
-    volumes:
-      - ./alertmanager/:/etc/alertmanager/
-    container_name: alertmanager
-    restart: unless-stopped
-    command:
-      - "--config.file=/etc/alertmanager/config.yml"
-      - "--storage.path=/etc/alertmanager/data"
-
   loki:
     image: grafana/loki:2.0.0
     container_name: loki
