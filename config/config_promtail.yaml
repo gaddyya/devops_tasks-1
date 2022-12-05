@@ -10,7 +10,6 @@ clients:
 
 scrape_configs:
 - job_name: nginx
-  entry_parser: raw
   static_configs:
   - targets:
       - localhost
@@ -19,7 +18,6 @@ scrape_configs:
       host: localhost
       __path__: /var/log/nginx/*log
 - job_name: apache
-  entry_parser: raw
   static_configs:
   - targets:
       - localhost
