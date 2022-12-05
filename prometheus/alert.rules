@@ -5,18 +5,18 @@ groups:
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle", job="local_server"}[2m])) * 100) > 1
         for: 0m
         labels:
-          severity: warninggit 
+          severity: warning
         annotations:
           summary: Host high CPU load (instance {{ $labels.instance }})
           description: "CPU load is > 1%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
   - name: ram_usage
     rules:
-      - alert: RabbitmqMemoryHigh
-        expr: rabbitmq_process_resident_memory_bytes{job="remote_server"} / rabbitmq_resident_memory_limit_bytes{job="remote_server"} * 100 > 5
+      - alert: HostOutOfMemory
+        expr: node_memory_MemAvailable_bytes{job="remote_server"} / node_memory_MemTotal_bytes{job="remote_server"} * 100 < 50
         for: 0m
         labels:
           severity: warning
         annotations:
-          summary: Rabbitmq memory high (instance {{ $labels.instance }})
-          description: "A node use more than 5% of allocated RAM\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          summary: Host out of memory (instance {{ $labels.instance }})
+          description: "Node memory is filling up (< 50% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
