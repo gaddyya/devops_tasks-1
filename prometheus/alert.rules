@@ -1,12 +1,22 @@
 groups:
 - name: test
   rules:
-  
+
   - alert: HostHighCpuLoad
-    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 1
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle", job="local_server"}[2m])) * 100) > 1
     for: 0m
     labels:
       severity: warning
     annotations:
       summary: Host high CPU load (instance {{ $labels.instance }})
       description: "CPU load is > 1%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+  - alert: RabbitmqMemoryHigh
+    expr: rabbitmq_process_resident_memory_bytes{job="remote_server"} / rabbitmq_resident_memory_limit_bytes{job="remote_server"} * 100 > 30
+    for: 0m
+    labels:
+      severity: warning
+    annotations:
+      summary: Rabbitmq memory high (instance {{ $labels.instance }})
+      description: "A node use more than 90% of allocated RAM\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
