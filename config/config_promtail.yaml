@@ -10,7 +10,6 @@ clients:
 
 scrape_configs:
 - job_name: nginx
-  entry_parser: raw
   static_configs:
   - targets:
       - localhost
