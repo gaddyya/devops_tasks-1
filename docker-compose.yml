@@ -16,7 +16,7 @@ services:
     image: vadimalexandrovich/httpd:latest
     container_name: apache
     ports:
-      - 8080:8080
+      - 8888:8080
     logging:
       driver: loki
       options:
@@ -109,7 +109,7 @@ services:
     user: root
     volumes:
       - ./log:/var/log/nginx
-      - ./log:/var/log/httpd
+      - ./log:/var/log/apache2
       - /var/log/system.log:/var/log/root/system.log
       - ./config/config_promtail.yaml:/etc/config/config_promtail.yaml
     entrypoint:

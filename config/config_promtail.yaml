@@ -26,4 +26,4 @@ scrape_configs:
     labels:
       job: apache
       host: localhost
-      __path__: /var/log/httpd/*log
+      __path__: /var/log/apache2/*log
