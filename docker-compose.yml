@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
   nginx:
@@ -93,7 +93,7 @@ services:
       - "--storage.path=/etc/alertmanager/data"
 
   loki:
-    image: grafana/loki
+    image: grafana/loki:2.0.0
     container_name: loki
     volumes:
       - ./config/loki.yaml:/etc/config/loki.yaml
