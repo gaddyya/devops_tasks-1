@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-lb
+  labels:
+    env : prod
+    owner: VadimAleksandrovich
+spec:
+  type: LoadBalancer
+  selector:
+    app: {{ .Release.Name }}-nginx # Selecting PODS with this tag
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.lb.elbPort }}
+      targetPort: {{ .Values.lb.containerPort }}

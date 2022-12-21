@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-nginx
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-nginx
+  replicas: {{ .Values.deployment.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-nginx
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-nginx
+        image: {{ .Values.deployment.image }}
+        ports:
+        - containerPort: 80
+          name: {{ .Release.Name }}-nginx
+
+        startupProbe:
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 20
+            periodSeconds: 10
+        readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        resources:
+            limits:
+              memory: 256Mi
+              cpu: "0.3"
+            requests:
+              memory: 256Mi
+              cpu: "0.3"

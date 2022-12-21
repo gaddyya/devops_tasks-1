@@ -1,0 +1,12 @@
+deployment:
+  image: vadimalexandrovich/nginx:latest
+  replicaCount: 1
+
+hpa:
+  metric:
+    name: cpu
+    value: 20
+
+lb:
+  elbPort: 80
+  containerPort: 80
