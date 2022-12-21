@@ -7,11 +7,11 @@ metadata:
     env : prod
     owner: VadimAleksandrovich
 spec:
-  type: LoadBalancer
   selector:
     app: {{ .Release.Name }}-nginx # Selecting PODS with this tag
   ports:
-    - name: http
-      protocol: TCP
+    - protocol: TCP
       port: {{ .Values.lb.elbPort }}
       targetPort: {{ .Values.lb.containerPort }}
+
+

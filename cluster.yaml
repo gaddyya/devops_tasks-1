@@ -12,3 +12,9 @@ nodeGroups:
     volumeSize: 10
     ssh:
       allow: true
+  - name: ng-2
+    instanceType: t3.small
+    desiredCapacity: 3
+    volumeSize: 10
+    ssh:
+      allow: true
