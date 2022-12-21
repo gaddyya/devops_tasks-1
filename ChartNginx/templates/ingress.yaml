@@ -18,6 +18,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: {{ .Release.Name }}-lb
+              name: {{ .Release.Name }}-nginx
               port:
                 number: 80
