@@ -4,12 +4,12 @@ metadata:
   name: minimal-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt"
+    # cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   tls:
     - hosts:
       - nginx.aleksandrovich.ml
-      secretName: letsencrypt
+      # secretName: letsencrypt
   rules:
     - host: "nginx.aleksandrovich.ml"
       http:
