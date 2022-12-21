@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}-nginx
 spec:
   selector:
-    matchLabels:
+    labels:
       app: {{ .Release.Name }}-nginx
   replicas: {{ .Values.deployment.replicaCount }}
   template:
