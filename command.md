@@ -1,4 +1,4 @@
-### Tutorial 
+### Tutorial
 https://www.digitalocean.com/community/tutorials/how-to-configure-kubernetes-horizontal-pod-autoscaler-using-metrics-server
 
 ### create/delete cluster
@@ -37,6 +37,12 @@ kubectl get hpa -w
 kubectl delete hpa,service,deployment nginx
 kubectl delete pod load-generator
 
+
+### Helm stack
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+helm install chart-prometheus prometheus-community/kube-prometheus-stack --create-namespace --namespace monitoring
 
 ### Config grafana
 kubectl -n monitoring edit svc chart-prometheus-grafana
