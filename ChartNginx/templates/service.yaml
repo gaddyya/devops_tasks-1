@@ -8,7 +8,8 @@ metadata:
     owner: VadimAleksandrovich
 spec:
   selector:
-    name: {{ .Release.Name }}-nginx # Selecting PODS with this tag
+    matchLabels:
+      app: {{ .Release.Name }}-nginx # Selecting PODS with this tag
   ports:
     - protocol: TCP
       port: {{ .Values.lb.elbPort }}
