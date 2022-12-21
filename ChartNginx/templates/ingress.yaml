@@ -14,6 +14,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              app: {{ .Release.Name }}-nginx
+              name: {{ .Release.Name }}-nginx
               port:
                 number: 80
