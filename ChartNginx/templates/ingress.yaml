@@ -11,7 +11,7 @@ spec:
       - nginx.aleksandrovich.ml
       secretName: letsencrypt
   rules:
-    - host: nginx.aleksandrovich.ml
+    - host: "nginx.aleksandrovich.ml"
       http:
         paths:
         - path: /

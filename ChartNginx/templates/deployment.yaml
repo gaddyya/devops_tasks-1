@@ -13,31 +13,14 @@ spec:
       labels:
         app: {{ .Release.Name }}-nginx
     spec:
+      selector:
+        name: {{ .Release.Name }}-nginx
       containers:
       - name: {{ .Release.Name }}-nginx
         image: {{ .Values.deployment.image }}
         ports:
         - containerPort: 80
           name: {{ .Release.Name }}-nginx
-
-        startupProbe:
-            httpGet:
-              path: /
-              port: 80
-            failureThreshold: 20
-            periodSeconds: 10
-        readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
-        livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
         resources:
             limits:
               memory: 256Mi
