@@ -6,9 +6,6 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     # cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
-- hosts:
-      - nginx.aleksandrovich.ml
-      # secretName: letsencrypt
   rules:
     - host: "nginx.aleksandrovich.ml"
       http:
