@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
       - nginx.aleksandrovich.ml
-      - arcocd.aleksandrovich.ml
+      - argocd.aleksandrovich.ml
       secretName: letsencrypt
   rules:
     - host: nginx.aleksandrovich.ml
