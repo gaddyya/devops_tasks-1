@@ -29,7 +29,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: argocd-server
+              app.kubernetes.io/name: argocd-server
               port:
                 number: 80
 
