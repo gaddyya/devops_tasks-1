@@ -6,15 +6,19 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  tls:
+    - hosts:
+      - nginx.aleksandrovich.ml
+      secretName: letsencrypt
   rules:
-    - host: "nginx.aleksandrovich.ml"
+    - host: nginx.aleksandrovich.ml
       http:
         paths:
         - path: /
           pathType: Prefix
           backend:
             service:
-              selector:
-                app: {{ .Release.Name }}-nginx
+              name: {{ .Release.Name }}-nginx
               port:
                 number: 80
+
