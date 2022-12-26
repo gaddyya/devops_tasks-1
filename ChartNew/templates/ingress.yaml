@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - aleksandrovich.ml
+      - nginx.aleksandrovich.ml
       secretName: letsencrypt
   rules:
-    - host: aleksandrovich.ml
+    - host: nginx.aleksandrovich.ml
       http:
         paths:
         - path: /
