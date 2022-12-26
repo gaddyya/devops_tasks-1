@@ -4,13 +4,11 @@ metadata:
   labels:
     app: argocd-server
   managedFields:
-  name: argocd-server-nodeport
+  name: argocd-server
   namespace: argocd
 spec:
   ports:
-  - nodePort: 30443
+  - protocol: TCP
     port: 8080
-    protocol: TCP
   selector:
     app.kubernetes.io/name: argocd-server
-  type: NodePort

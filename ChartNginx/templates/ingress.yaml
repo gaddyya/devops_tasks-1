@@ -9,6 +9,7 @@ spec:
   tls:
     - hosts:
       - nginx.aleksandrovich.ml
+      - arcocd.aleksandrovich.ml
       secretName: letsencrypt
   rules:
     - host: nginx.aleksandrovich.ml
@@ -19,6 +20,16 @@ spec:
           backend:
             service:
               name: {{ .Release.Name }}-nginx
+              port:
+                number: 80
+    - host: argocd.aleksandrovich.ml
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: argocd-server
               port:
                 number: 80
 
