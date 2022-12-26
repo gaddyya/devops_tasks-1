@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: argocd-server
+    app: argocd-server-nodeport
   managedFields:
   name: argocd-server-nodeport
   namespace: argocd
