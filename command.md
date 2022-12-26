@@ -60,3 +60,16 @@ helm install App3 AppNginx/ --setReplicaCount=4
 ### Helm Create
 
 helm create Chart-name # in folder AppNginx
+
+
+
+
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
+helm repo update && \
+helm install ingress-nginx ingress-nginx/ingress-nginx
+
+
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.9.1/cert-manager.yaml
+
+kubectl get pods -n cert-manager --watch
