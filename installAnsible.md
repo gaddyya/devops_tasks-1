@@ -21,12 +21,19 @@ server3 ansible_host=203.0.113.113
 ansible-inventory --list -y
 ```
 
+> Try conntect to servers
+
+```
+ansible all -m ping
+```
 ```
 cd /etc/ansible
 ```
+> Createe folder "group_vars" and add the following in new file called "servers" (or any other name)
 ``` 
 mkdir group_vars
 ```
 ```
-echo -e "ansible_user: ubuntu\nansible_ssh_private_key_file: /home/ubuntu/.ssh/trainee8.pem" > servers
+ansible_user: ubuntu
+ansible_ssh_private_key_file: /home/ubuntu/.ssh/trainee8.pem" 
 ```
