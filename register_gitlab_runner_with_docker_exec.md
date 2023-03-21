@@ -18,7 +18,7 @@ sudo gitlab-runner register \
   --url $GITLAB_URL \
   --registration-token "$GITLAB_PROJECT_REGISTRATION_TOKEN" \
   --executor "docker" \
-  --docker-image alpine:latest \
+  --docker-image docker:20.10.10 \
   --description "docker-runner" \
   --maintenance-note "Gitlab runner with docker executor" \
   --tag-list "$GITLAB_TAG" \
